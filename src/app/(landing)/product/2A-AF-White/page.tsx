@@ -18,6 +18,7 @@ import { AddCart } from "@/components/ui/components/addCart/addCart";
 import { NavbarHeader } from "@/components/ui/components/navbar/navbar";
 import { useState } from "react";
 import { Gallery } from "@/components/ui/components/gallery/gallery";
+import Breadcrumb from "../../_components/common/Breadcrumb";
 const inter = Inter({ subsets: ["latin"] });
 const interProducts = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -98,8 +99,16 @@ export default function One() {
   };
   const data = ["/2A/2AAfWhite.jpg", "/2A/2AAfWhiteB.jpg"];
 
+  const breadcrumbItems = [
+    { href: '/', label: 'Home' },
+    { href: '/stores', label: 'Store' },
+    { label: '2A AF White' } // This item does not have a link
+  ];
+
+
   return (
     <>
+    <Breadcrumb items={breadcrumbItems} />
       <main
         style={{
           backgroundColor: "#171717",

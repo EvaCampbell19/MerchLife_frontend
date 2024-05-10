@@ -12,7 +12,7 @@ export default function Stores() {
         return response.json();
       })
       .then((responseData) => {
-        console.log(responseData);
+        console.log(responseData.artist);
         setData(responseData.artist);
       });
   }, []);

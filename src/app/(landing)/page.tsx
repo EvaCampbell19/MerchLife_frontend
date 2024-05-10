@@ -97,7 +97,7 @@ const HomePage = () => {
         <Suspense>
           <Carousel />
         </Suspense>
-        {/* <ThreeItemGridStores /> */}
+        <ThreeItemGridStores />
       </section>
       <section id="how-it-works" className="bg-white dark:bg-white">
         <div className="mx-auto max-w-screen-xl items-center gap-16 px-4 py-8 lg:grid lg:grid-cols-2 lg:px-6 lg:py-16">

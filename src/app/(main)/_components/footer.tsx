@@ -50,53 +50,46 @@ const Footer = () => {
             </div>
 
             <div className="w-full py-4">
-                <div className="grid grid-cols-12 ">
-                    <div className="col-span-1 ">
-                        <Link href="/" className="">
-                            <Image src="/logo.png" width="80" height="80" alt="logo" />
-                        </Link>
-                    </div>
-                    <div className="col-span-5">
-                        <div className="flex flex-col items-center justify-between gap-6 lg:h-12 lg:flex-row lg:gap-0 lg:rounded-full lg:bg-gray-700 lg:p-0">
+            <div className="flex flex-col lg:flex-row items-center justify-between">
+                        <div className="flex items-center justify-center mb-4 lg:mb-0">
+                            <Link href="/" className="">
+                                <Image src="/logo.png" width="80" height="80" alt="logo" />
+                            </Link>
+                        </div>
+                        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:h-12 lg:gap-0 lg:rounded-full lg:bg-gray-700 lg:p-0 mb-4 lg:mb-0">
                             <input
                                 type="text"
                                 name="email"
-                                className="mx-auto w-full max-w-xl flex-1 rounded-full bg-gray-700 px-6 py-3 text-gray-900 placeholder:text-white focus:outline-none lg:w-auto lg:bg-transparent lg:px-7 lg:py-5"
+                                className="w-full lg:w-auto max-w-xl lg:max-w-none flex-1 rounded-full bg-gray-700 px-6 py-3 text-gray-900 placeholder:text-white focus:outline-none lg:bg-transparent lg:px-8 lg:py-5"
                                 placeholder="Your email here..."
                             />
                             <button
                                 type="submit"
-                                className="rounded-full bg-white px-8 py-3 font-semibold text-black shadow-md hover:bg-white"
+                                className="rounded-full bg-white px-6 lg:px-8 py-3 font-semibold text-black shadow-md hover:bg-white"
                             >
                                 Subscribe
                             </button>
                         </div>
-                    </div>
-                    <div className="col-span-3">
-                        <div className="flex items-center justify-end ">
-
-                            <a href="mailto:contact@merchlife.com" className="rounded-full flex items-center justify-center w-10 h-10 border-gray-400 border bg-gray-700">
-                                <IoMailOpenSharp className="w-5 h-5" />
+                        <div className="flex items-center justify-end mb-4 lg:mb-0">
+                            <a href="mailto:contact@merchlife.com" className="rounded-full  flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 border-gray-400 border bg-gray-700">
+                                <IoMailOpenSharp className="w-4 h-4 lg:w-5 lg:h-5" />
                             </a>
-                            <div className="space-y-0.5 font-medium dark:text-white text-left rtl:text-right ms-3">
+                            <div className="space-y-0.5 font-medium dark:text-white text-left ms-3">
                                 <div>Email Us!</div>
                                 <a href="mailto:contact@merchlife.com" className="text-sm text-gray-500 dark:text-gray-400 ">mailto:contact@merchlife.com</a>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-span-3">
-                        <div className="flex items-center justify-center ">
-
-                            <a href="tel:+1 408-835-0739" className="rounded-full flex items-center justify-center w-10 h-10 border-gray-400 border bg-gray-700">
-                                <PiPhoneCallDuotone className="w-5 h-5" />
+                        <div className="flex items-center justify-end ">
+                            <a href="tel:+1 408-835-0739" className="rounded-full flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 border-gray-400 border bg-gray-700">
+                                <PiPhoneCallDuotone className="w-4 h-4 lg:w-5 lg:h-5" />
                             </a>
-                            <div className="space-y-0.5 font-medium dark:text-white text-left rtl:text-right ms-3">
+                            <div className="space-y-0.5 font-medium dark:text-white text-left ms-3">
                                 <div>Call Us!</div>
                                 <a href="tel:+1 408-835-0739" className="text-sm text-gray-500 dark:text-gray-400 ">+1 408-835-0739</a>
                             </div>
                         </div>
                     </div>
-                </div>
+
             </div>
 
             <div className="w-full  border-b border-t border-gray-400">
@@ -110,7 +103,7 @@ const Footer = () => {
                                 </a>
                             </li>
                             <li className="my-2 sm:my-0">
-                                <a href="javascript:;" className="text-white hover:text-gray-400">
+                                <a href="/stores" className="text-white hover:text-gray-400">
                                     Stores
                                 </a>
                             </li>
@@ -120,17 +113,17 @@ const Footer = () => {
                                 </a>
                             </li>
                             <li className="my-2 sm:my-0">
-                                <a href="./how-it-works" className="text-white hover:text-gray-400">
+                                <a href="/how-it-works" className="text-white hover:text-gray-400">
                                     How it works
                                 </a>
                             </li>
                             <li>
-                                <a href="./about" className="text-white hover:text-gray-400">
+                                <a href="/about" className="text-white hover:text-gray-400">
                                     About
                                 </a>
                             </li>
                             <li>
-                                <a href="./faq" className="text-white hover:text-gray-400">
+                                <a href="/faq" className="text-white hover:text-gray-400">
                                     FAQ
                                 </a>
                             </li>

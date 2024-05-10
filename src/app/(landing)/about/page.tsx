@@ -52,9 +52,9 @@ export default function About() {
   Enterprise technology acquisitions
 </div>
 
-    <div className="flex flex-wrap justify-center items-center space-x-8">
+    <div className="flex flex-wrap justify-center items-center space-x-8 sm:space-x-8">
       {dataOfCard.map((items, index) => (
-        <div className="flex shadow-lg flex-row w-full md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 mb-8 rounded-lg bg-white 
+        <div className="flex transform transition duration-300 hover:scale-105 shadow-lg flex-row w-full md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 mb-8 rounded-lg bg-white 
         shadow-secondary-1 dark:bg-surface-dark dark:text-white text-surface" key={index}>
           <div className="p-8 ">
             <h5 className="mb-4 flex justify-center text-center font-medium leading-tight">
@@ -96,7 +96,7 @@ export default function About() {
       </p>
       <p className="mb-4 text-base">
       <img
-            className="object-cover h-full w-full md:h-auto  md:pr-8"
+            className="object-cover h-full w-full md:h-auto  md:pr-8 transform transition duration-300 hover:scale-105"
             src='about2.svg'
             alt=""
           />
@@ -105,8 +105,8 @@ export default function About() {
     </div>
     <div className="">
     <p className="mb-4 text-base">
-      <img
-            className="object-cover h-full w-full md:h-auto  md:pr-8"
+      <img 
+            className="object-cover h-full w-full md:h-auto  md:pr-8 transform transition duration-300 hover:scale-105"
             src='about3.svg'
             alt=""
           />
