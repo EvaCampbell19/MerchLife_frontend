@@ -1,20 +1,18 @@
 import { useState } from 'react';
 
-const QuantityCounter = () => {
-  const [quantity, setQuantity] = useState(1); // Initial quantity
+const QuantityCounter = (props) => {
 
   const incrementQuantity = () => {
-    setQuantity(prevQuantity => prevQuantity + 1);
+    props.setQuantity(prevQuantity => prevQuantity + 1);
   };
 
   const decrementQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(prevQuantity => prevQuantity - 1);
+    if (props.quantity > 1) {
+      props.setQuantity(prevQuantity => prevQuantity - 1);
     }
   };
 
   return (
-    // <form className="max-w-xs mx-auto">
       <div className="relative flex max-w-[8rem] items-center border border-black">
         <button
           type="button"
@@ -39,7 +37,7 @@ const QuantityCounter = () => {
         </button>
         <input
           type="text"
-          value={quantity}
+          value={props.quantity}
           readOnly
           className="block h-11 w-full border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           required
@@ -66,7 +64,6 @@ const QuantityCounter = () => {
           </svg>
         </button>
       </div>
-    // </form>
   );
 };
 
