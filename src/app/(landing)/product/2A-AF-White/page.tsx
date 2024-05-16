@@ -14,20 +14,45 @@ import {
 import { Inter } from "next/font/google";
 import { useState } from "react";
 import Breadcrumb from "../../_components/common/Breadcrumb";
-import CustomSwiper from "../../_components/common/CustomeSwiper";
 import QuantityCounter from "../../_components/common/QuantityCounter";
 import { Description } from "@radix-ui/react-dialog";
 import StarRating from "../../_components/common/StarRating";
 import Pegination from "../../_components/common/Pegination";
+import Tabs from "../../_components/common/Tabs";
+import CustomSwiper from "../../_components/common/CustomeSwiper";
 const inter = Inter({ subsets: ["latin"] });
 const interProducts = Inter({ subsets: ["latin"], variable: "--font-inter" });
+
+const tabContent = [
+  {
+    title: 'Description',
+    content: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae tincidunt augue, at porta sapien. Suspendisse ac finibus tellus, non dapibus nibh. Nulla aliquam, odio ultricies aliquet pretium, lectus velit lacinia diam, dignissim egestas tortor nisi sagittis nunc. Sed vehicula neque tortor, eget finibus arcu molestie nec. Sed rutrum nisi porta turpis vehicula, facilisis finibus sapien tincidunt. Pellentesque sollicitudin purus quis dolor finibus congue.</p><br/>
+
+    <p>Sed a velit lectus. In hac habitasse platea dictumst. Pellentesque volutpat enim nec nibh vulputate lacinia. Donec tempor, sem id placerat faucibus, sapien urna convallis leo, nec bibendum sapien diam mattis nulla. Mauris auctor velit id dui lobortis rhoncus. Praesent eget mattis neque. Sed sollicitudin porttitor nisl. Nullam at nunc vulputate, sollicitudin ipsum sit amet, venenatis sapien. Maecenas imperdiet sem ut ante varius, a aliquet mauris tristique.</p> <br/>
+
+    <p>Mauris at elementum elit, eget feugiat elit. Pellentesque vel porta velit, quis tristique justo. In lobortis vehicula odio, non pretium felis. Donec tempus justo rhoncus augue malesuada, et aliquet nisi aliquet. Proin vulputate odio tortor, et pulvinar erat interdum quis. Morbi finibus fringilla quam vel finibus. Fusce vel blandit lectus, et tincidunt sapien. Sed facilisis erat in orci volutpat sodales.</p> <br/>`,
+  },
+  {
+    title: 'Size Charts',
+    content: `<p>In hac habitasse platea dictumst. Pellentesque volutpat enim nec nibh vulputate lacinia...</p>`,
+  },
+  {
+    title: 'Shipping Policy',
+    content: `<p>Mauris at elementum elit, eget feugiat elit. Pellentesque vel porta velit, quis tristique justo...</p>`,
+  },
+  {
+    title: 'Return Policy',
+    content: `<p>Sed sollicitudin porttitor nisl. Nullam at nunc vulputate, sollicitudin ipsum sit amet, venenatis sapien...</p>`,
+  },
+];
+
 
 export default function One() {
   const [selected, setSelected] = useState(["s"]);
   const [quantity, setQuantity] = useState(1);
   const [selectedStars, setSelectedStars] = useState([]);
   const [selectedSize, setSelectedSize] = useState("");
-  const [displayedReviews,setDisplayedReviews] = useState([]);
+  const [displayedReviews, setDisplayedReviews] = useState([]);
   const [reviews, setReviews] = useState([
     {
       name: 'John Deo',
@@ -160,145 +185,95 @@ export default function One() {
     setSelectedSize(size);
   };
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      rating:selectedStars?.length,
-      Product_id : '',
-      product_name : '',
-      price :'',
-      size : selectedSize,
-      quantity : quantity,
-      
+      rating: selectedStars?.length,
+      Product_id: '',
+      product_name: '',
+      price: '',
+      size: selectedSize,
+      quantity: quantity,
+
     }
-    console.log("log",data);
-    
+    console.log("log", data);
+
   }
   return (
     <>
       <Breadcrumb items={breadcrumbItems} />
 
       <div className="container mx-auto">
-        <div className="grid grid-cols-1  md:grid-cols-2">
-       
-          <div className="p-4 pl-20">
+        <div className="flex flex-row md:flex-row justify-center">
+          <div className="p-4 w-full md:w-auto mb-4 md:mb-0 md:mr-4 md:flex-shrink-0 sm:w-full">
             <CustomSwiper images={images} />
           </div>
-          {/* <form onSubmit={handleSubmit}> */}
-          <form onSubmit={(e) =>handleSubmit(e)} className="w-2/3 p-4">
-             
-            <div className="flex items-center">
-              {[...Array(5)].map((_, index:any) => (
-                <svg
-                key={index}
-                className={`h-5 w-5 ${selectedStars.includes(index) ? "text-yellow-300" : "text-gray-300"} ms-1 cursor-pointer`}
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20"
-                onClick={() => handleClick(index)}
-                style={{ pointerEvents: "auto" }}
-              >
-                  <path d="m11.862 0 2.632 8.101h8.518l-6.891 5.007 2.632 8.101-6.891-5.007L4.97 21.21l2.632-8.101L.712 8.101H9.23L11.862 0Z"
-    />
-                </svg>
-              ))}{" "}
-              &nbsp; &nbsp;
-              <p className="text-xl  text-gray-400">Lorem ipsum dolor sit amet</p>
-            </div>
-            <p className="py-4 text-5xl font-bold">2A-AF-White</p>
-            <p className="border-b py-2 text-2xl font-semibold text-[#636363]">$24.5</p>
+          <div className="p-4 w-full md:w-auto lg:w-1/2">
+            <form onSubmit={(e) => handleSubmit(e)} className="p-4">
 
-            <div className=" border-b py-5">
-              <p className="text-xl font-bold">
-                SIZE : <span className="font-normal text-gray-400">{selectedSize}</span>
-              </p>
-
-              <div className="inline-flex gap-3  rounded-md py-4" role="group">
-                {sizeOptions.map((size, index) => (
-                  <button
+              <div className="flex items-center">
+                {[...Array(5)].map((_, index: any) => (
+                  <svg
                     key={index}
-                    type="button"
-                    className={`h-10 w-10 rounded-full border text-sm font-medium  ${
-                      selectedSize === size ? "border border-black text-black" : "text-gray-400"
-                    }`}
-                    onClick={() => handleSizeSelect(size)}
+                    className={`h-5 w-5 ${selectedStars.includes(index) ? "text-yellow-300" : "text-gray-300"} ms-1 cursor-pointer`}
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 22 20"
+                    onClick={() => handleClick(index)}
+                    style={{ pointerEvents: "auto" }}
                   >
-                    {size}
-                  </button>
-                ))}
+                    <path d="m11.862 0 2.632 8.101h8.518l-6.891 5.007 2.632 8.101-6.891-5.007L4.97 21.21l2.632-8.101L.712 8.101H9.23L11.862 0Z"
+                    />
+                  </svg>
+                ))}{" "}
+                &nbsp; &nbsp;
+                <p className="text-xl  text-gray-400">Lorem ipsum dolor sit amet</p>
               </div>
-            </div>
-            <div className=" border-b py-5">
-              <p className="text-xl font-bold">QUANTITY</p>
-              <div>
-                <div className="inline-flex   py-5 md:space-x-2" role="group">
-                  <QuantityCounter setQuantity  = {setQuantity} quantity = {quantity}/>
-                  <button
-                    type="submit"
-                    className="mb-2 border-gray-200 bg-[#121212] px-5 py-2.5 text-sm font-medium text-[#F5F5F5] focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 md:mb-0 lg:h-[54px] lg:w-[290px]"
-                  >
-                    ADD TO CART
-                  </button>
+              <p className="py-4 text-5xl font-bold">2A-AF-White</p>
+              <p className="border-b py-2 text-2xl font-semibold text-[#636363]">$24.5</p>
+
+              <div className=" border-b py-5">
+                <p className="text-xl font-bold">
+                  SIZE : <span className="font-normal text-gray-400">{selectedSize}</span>
+                </p>
+
+                <div className="inline-flex gap-3 rounded-md py-4" role="group">
+                  {sizeOptions.map((size, index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      className={`h-10 w-10 rounded-full border text-sm font-medium  ${selectedSize === size ? "border border-black text-black" : "text-gray-400"
+                        }`}
+                      onClick={() => handleSizeSelect(size)}
+                    >
+                      {size}
+                    </button>
+                  ))}
                 </div>
               </div>
-            </div>
+              <div className=" border-b py-5">
+                <p className="text-xl font-bold">QUANTITY</p>
+                <div>
+                  <div className="inline-flex   py-5 md:space-x-2 sm:space-x-2" role="group">
+                    <QuantityCounter setQuantity={setQuantity} quantity={quantity} />
+                    <button
+                      type="submit"
+                      className="mb-2 border-gray-200 bg-[#121212] px-5 py-2.5 text-sm font-medium text-[#F5F5F5]  md:mb-0 lg:h-[54px] lg:w-[290px]"
+                    >
+                      ADD TO CART
+                    </button>
+                  </div>
+                </div>
+              </div>
             </form>
-          {/* </div> */}
-          {/* </form> */}
+          </div>
         </div>
       </div>
 
-      <div className="m-8 border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800 md:space-x-6 lg:flex-row">
-        <div className="m-6 flex flex-col md:flex-row md:space-x-2 md:space-y-0">
-          <button
-            type="button"
-            className="mb-2 border-gray-200 bg-[#F5F5F5] px-5 py-2.5 text-sm font-medium text-[#121212] hover:bg-[#121212] hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 md:mb-0 lg:h-[54px] lg:w-[290px]"
-          >
-            Description
-          </button>
-          <button
-            type="button"
-            className="mb-2 border-gray-200 bg-[#F5F5F5] px-5 py-2.5 text-sm font-medium text-[#121212] hover:bg-[#121212] hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 md:mb-0 lg:h-[54px] lg:w-[290px]"
-          >
-            Size Charts
-          </button>
-          <button
-            type="button"
-            className="mb-2 border-gray-200 bg-[#F5F5F5] px-5 py-2.5 text-sm font-medium text-[#121212] hover:bg-[#121212] hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 md:mb-0 lg:h-[54px] lg:w-[290px]"
-          >
-            Shipping Policy
-          </button>
-          <button
-            type="button"
-            className="mb-2 border-gray-200 bg-[#F5F5F5] px-5 py-2.5 text-sm font-medium text-[#121212] hover:bg-[#121212] hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 md:mb-0 lg:h-[54px] lg:w-[290px]"
-          >
-            Return Policy
-          </button>
-        </div>
-        <p className="mb-4 mt-4 text-sm font-normal leading-normal text-gray-700 dark:text-gray-400 md:mb-4 md:mt-0 md:text-base lg:text-lg xl:text-lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae tincidunt augue, at
-          porta sapien. Suspendisse ac finibus tellus, non dapibus nibh. Nulla aliquam, odio
-          ultricies aliquet pretium, lectus velit lacinia diam, dignissim egestas tortor nisi
-          sagittis nunc. Sed vehicula neque tortor, eget finibus arcu molestie nec. Sed rutrum nisi
-          porta turpis vehicula, facilisis finibus sapien tincidunt. Pellentesque sollicitudin purus
-          quis dolor finibus congue.
-        </p>
-        <p className="mb-4 mt-4 text-sm font-normal leading-normal text-gray-700 dark:text-gray-400 md:mb-4 md:mt-0 md:text-base lg:text-lg xl:text-lg">
-          In hac habitasse platea dictumst. Pellentesque volutpat enim nec nibh vulputate lacinia.
-          Donec tempor, sem id placerat faucibus, sapien urna convallis leo, nec bibendum sapien
-          diam mattis nulla. Mauris auctor velit id dui lobortis rhoncus. Praesent eget mattis
-          neque. Sed sollicitudin porttitor nisl. Nullam at nunc vulputate, sollicitudin ipsum sit
-          amet, venenatis sapien. Maecenas imperdiet sem ut ante varius, a aliquet mauris tristique.
-        </p>
-        <p className="mb-4 mt-4 text-sm font-normal leading-normal text-gray-700 dark:text-gray-400 md:mb-4 md:mt-0 md:text-base lg:text-lg xl:text-lg">
-          Mauris at elementum elit, eget feugiat elit. Pellentesque vel porta velit, quis tristique
-          justo. In lobortis vehicula odio, non pretium felis. Donec tempus justo rhoncus augue
-          malesuada, et aliquet nisi aliquet. Proin vulputate odio tortor, et pulvinar erat interdum
-          quis. Morbi finibus fringilla quam vel finibus. Fusce vel blandit lectus, et tincidunt
-          sapien. Sed facilisis erat in orci volutpat sodales.
-        </p>
-      </div>
+    
+
+      <Tabs tabContent={tabContent} />
       <section className="container relative py-24">
         <div className="lg-6 mx-auto w-full max-w-7xl px-4 md:px-5">
           <div className="mb-11 flex items-center justify-center md:space-x-2">
@@ -309,49 +284,49 @@ export default function One() {
             <div className="flex-grow border-t border-black"></div>
           </div>
           <div className="grid grid-cols-1 gap-8">
-           {displayedReviews?.map((review:any, index) => (
-            <div key={index} className="mx-auto grid max-w-sm grid-cols-12 sm:max-w-full">
-              <div className="col-span-12  ">
-                <div className="gap-28 sm:flex">
-                  <div className="col-span-12 flex flex-row  max-lg:hidden max-lg:pt-6 lg:col-span-2 lg:flex-col lg:items-center ">
-                    <div className="mb-5 flex w-full items-center gap-2 lg:justify-between">
-                     <StarRating rating={parseInt(review.rating)} />
-                    </div>
-                    <p className="flex  whitespace-nowrap text-lg font-medium leading-8 text-gray-400 lg:text-center">
-                      <button
-                        className="mb-2 border-gray-200 max-w-[136px] max-h-[30px]  bg-[#121212] px-5  text-sm font-medium text-white  
+            {displayedReviews?.map((review: any, index) => (
+              <div key={index} className="mx-auto grid max-w-sm grid-cols-12 sm:max-w-full">
+                <div className="col-span-12  ">
+                  <div className="gap-28 sm:flex">
+                    <div className="col-span-12 flex flex-row  max-lg:hidden max-lg:pt-6 lg:col-span-2 lg:flex-col lg:items-center ">
+                      <div className="mb-5 flex w-full items-center gap-2 lg:justify-between">
+                        <StarRating rating={parseInt(review.rating)} />
+                      </div>
+                      <p className="flex  whitespace-nowrap text-lg font-medium leading-8 text-gray-400 lg:text-center">
+                        <button
+                          className="mb-2 border-gray-200 max-w-[136px] max-h-[30px]  bg-[#121212] px-5  text-sm font-medium text-white  
                            focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:bg-gray-800 dark:text-gray-400 
                           dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 md:mb-0 "
-                      >
-                        Verified buyer
-                      </button>
-                      <p className="mb-2 pl-2 text-[22px]  font-bold leading-[22px] text-gray-900">
-                       {review.name}
+                        >
+                          Verified buyer
+                        </button>
+                        <p className="mb-2 pl-2 text-[22px]  font-bold leading-[22px] text-gray-900">
+                          {review.name}
+                        </p>
                       </p>
-                    </p>
-                  </div>
+                    </div>
 
-                  <div className="text ">
-                    <p className="mb-2 text-[22px]  font-bold leading-[22px] text-gray-900">
-                      {review.title}
-                    </p>
+                    <div className="text ">
+                      <p className="mb-2 text-[22px]  font-bold leading-[22px] text-gray-900">
+                        {review.title}
+                      </p>
 
-                    <p className="mb-4 text-lg font-normal leading-[30px] ">
-                      {review.description}
-                    </p>
+                      <p className="mb-4 text-lg font-normal leading-[30px] ">
+                        {review.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             ))}
 
             <div className="w-full border-b border-gray-100 pb-8"></div>
-            <Pegination reviews={reviews} setDisplayedReviews = {setDisplayedReviews}/>
+            <Pegination reviews={reviews} setDisplayedReviews={setDisplayedReviews} />
           </div>
         </div>
         <div className="flex items-center gap-4"></div>
       </section>
-   
+
     </>
   );
 }
